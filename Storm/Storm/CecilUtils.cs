@@ -38,7 +38,14 @@ namespace Storm
             if (set) sb.Length -= 1;
 
             sb.Append(')');
-            sb.Append(md.ReturnType.Resolve().FullName);
+            try
+            {
+                sb.Append(md.ReturnType.Resolve().FullName);
+            }
+            catch (System.IO.IOException e)
+            {
+                Console.WriteLine(e.ToString());
+            }
             return sb.ToString();
         }
 
